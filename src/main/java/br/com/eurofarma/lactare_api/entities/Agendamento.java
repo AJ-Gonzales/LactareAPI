@@ -24,6 +24,7 @@ public class Agendamento {
     private LocalTime horario;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Status status;
 
     @ManyToOne

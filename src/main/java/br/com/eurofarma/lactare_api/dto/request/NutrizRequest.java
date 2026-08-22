@@ -1,9 +1,6 @@
 package br.com.eurofarma.lactare_api.dto.request;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Past;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,7 +33,7 @@ public class NutrizRequest {
     @NotBlank(message = "CEP é obrigatório")
     private String cep;
 
-    @NotBlank(message = "Data de nascimento é obrigatória")
+    @NotNull(message = "Data de nascimento é obrigatória")
     @Past(message = "A data de nascimento deve estar no passado")
     private LocalDate dataNascimento;
 

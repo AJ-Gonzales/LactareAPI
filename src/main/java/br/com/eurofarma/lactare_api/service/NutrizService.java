@@ -20,23 +20,22 @@ public class NutrizService {
     @Transactional(readOnly = true)
     public List<NutrizResponse> findAllNutrizes(){
 
-        List<Nutriz> produtos = nutrizRepository.findAll();
+        List<Nutriz> nutrizes = nutrizRepository.findAll();
 
-        return produtos.stream().map(NutrizResponse::new).toList();
+        return nutrizes.stream().map(NutrizResponse::new).toList();
     }
 
     @Transactional(readOnly = true)
     public NutrizResponse findNutrizById(Long id) {
 
-        Nutriz nutriz = nutrizRepository.findById(id)
-                .orElseThrow(() ->
-                        new ResourceNotFoundException("Recurso não encontrado. ID: "));
+        Nutriz nutriz = nutrizRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Recurso não encontrado. ID: "+id));
 
         return new NutrizResponse(nutriz);
     }
 
     @Transactional
-    public NutrizResponse createNutriz(NutrizRequest request) {
+    public NutrizResponse saveNutriz(NutrizRequest request){
 
         Nutriz nutriz = new Nutriz();
         copyDtoToNutriz(request,nutriz);
@@ -46,10 +45,10 @@ public class NutrizService {
     }
 
     @Transactional
-    public NutrizResponse updateNutriz(Long id, NutrizRequest request) {
+    public NutrizResponse updateNutriz(Long id, NutrizRequest request){
 
         Nutriz nutriz = nutrizRepository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("REcurso não encontrado. ID: "+id));
+                () -> new ResourceNotFoundException("Recurso não encontrado. ID: "+id));
 
         copyDtoToNutriz(request,nutriz);
         Nutriz update = nutrizRepository.save(nutriz);
@@ -58,16 +57,16 @@ public class NutrizService {
     }
 
     @Transactional
-    public void deleteNutrizById(Long id) {
+    public void deleteNutrizById(Long id){
 
         if (!nutrizRepository.existsById(id)){
-            throw new ResourceNotFoundException("Recurso não encontrado. ID: ");
+            throw new ResourceNotFoundException("Recurso não encontrado. ID: "+id);
         }
 
         nutrizRepository.deleteById(id);
     }
 
-    private void copyDtoToNutriz(NutrizRequest request, Nutriz nutriz) {
+    private void copyDtoToNutriz(NutrizRequest request, Nutriz nutriz){
 
         nutriz.setNome(request.getNome());
         nutriz.setCpf(request.getCpf());

@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @AllArgsConstructor
@@ -20,7 +21,7 @@ public class DoacaoRequest {
 
     @NotNull(message = "Quantidade é obrigatória")
     @Positive(message = "A quantidade deve ser maior que zero")
-    private Double quantidade;
+    private BigDecimal quantidade;
 
     @NotNull(message = "ID da nutriz é obrigatório")
     @Positive(message = "ID da nutriz deve ser positivo")

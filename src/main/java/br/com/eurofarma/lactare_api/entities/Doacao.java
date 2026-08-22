@@ -3,6 +3,7 @@ package br.com.eurofarma.lactare_api.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @AllArgsConstructor
@@ -19,7 +20,7 @@ public class Doacao {
     private Long id;
     @Column(nullable = false)
     private LocalDate data;
-    private Double quantidade;
+    private BigDecimal quantidade;
 
     @ManyToOne
     @JoinColumn(name = "nutriz_id")

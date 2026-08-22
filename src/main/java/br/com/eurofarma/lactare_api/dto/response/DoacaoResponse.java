@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @AllArgsConstructor
@@ -14,7 +15,7 @@ public class DoacaoResponse {
 
     private Long id;
     private LocalDate data;
-    private Double quantidade;
+    private BigDecimal quantidade;
     private Long nutrizId;
     private Long bancoLeiteId;
     private Long agendamentoId;

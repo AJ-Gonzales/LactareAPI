@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -16,6 +18,10 @@ public class PesquisaSatisfacaoRequest {
     private Integer nota;
 
     private String comentario;
+
+    @NotNull(message = "Data de resposta é obrigatória")
+    @PastOrPresent(message = "Data da resposta deve estar no presente ou passado")
+    private LocalDate dataResposta;
 
     @NotNull(message = "ID da nutriz é obrigatório")
     @Positive(message = "ID da nutriz deve ser positivo")
