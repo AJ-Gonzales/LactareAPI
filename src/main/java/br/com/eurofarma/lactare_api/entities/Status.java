@@ -4,5 +4,6 @@ public enum Status {
     PENDENTE,
     CONFIRMADO,
     CANCELADO,
-    CONCLUIDO
+    CONCLUIDO,
+    NAO_COMPARECEU
 }

@@ -2,6 +2,7 @@ package br.com.eurofarma.lactare_api.controller;
 
 import br.com.eurofarma.lactare_api.dto.request.AgendamentoRequest;
 import br.com.eurofarma.lactare_api.dto.response.AgendamentoResponse;
+import br.com.eurofarma.lactare_api.entities.Status;
 import br.com.eurofarma.lactare_api.service.AgendamentoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/agendamentos")
+@RequestMapping("/api/v1/agendamentos")
 public class AgendamentoController {
 
     @Autowired
@@ -28,7 +29,7 @@ public class AgendamentoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AgendamentoResponse> getAgendamentoById(@PathVariable @RequestBody Long id){
+    public ResponseEntity<AgendamentoResponse> getAgendamentoById(@PathVariable Long id){
 
         AgendamentoResponse agendamento = agendamentoService.findAgendamentoById(id);
 
@@ -58,11 +59,12 @@ public class AgendamentoController {
         return  ResponseEntity.ok(agendamento);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteAgendamento(@PathVariable Long id){
+    @PatchMapping("/{id}/status")
+    public ResponseEntity<AgendamentoResponse> updateStatus(@PathVariable Long id,
+                                                            @RequestParam Status status) {
 
-        agendamentoService.deleteAgendamento(id);
-
-        return ResponseEntity.noContent().build();
+        AgendamentoResponse agendamento = agendamentoService.updateStatus(id, status);
+        return ResponseEntity.ok(agendamento);
     }
+    
 }

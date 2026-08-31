@@ -2,10 +2,7 @@ package br.com.eurofarma.lactare_api.service;
 
 import br.com.eurofarma.lactare_api.dto.request.DoacaoRequest;
 import br.com.eurofarma.lactare_api.dto.response.DoacaoResponse;
-import br.com.eurofarma.lactare_api.entities.Agendamento;
-import br.com.eurofarma.lactare_api.entities.BancoLeite;
-import br.com.eurofarma.lactare_api.entities.Doacao;
-import br.com.eurofarma.lactare_api.entities.Nutriz;
+import br.com.eurofarma.lactare_api.entities.*;
 import br.com.eurofarma.lactare_api.exceptions.DatabaseException;
 import br.com.eurofarma.lactare_api.exceptions.ResourceNotFoundException;
 import br.com.eurofarma.lactare_api.repository.AgendamentoRepository;
@@ -52,10 +49,13 @@ public class DoacaoService {
     }
 
     @Transactional
-    public DoacaoResponse saveDoacao(DoacaoRequest request){
+    public DoacaoResponse saveDoacao(DoacaoRequest request) {
 
         Doacao doacao = new Doacao();
-        copyDtoToDoacao(request,doacao);
+        copyDtoToDoacao(request, doacao);
+        Agendamento agendamento = doacao.getAgendamento();
+        agendamento.setStatus(Status.CONCLUIDO);
+        agendamentoRepository.save(agendamento);
         Doacao save = doacaoRepository.save(doacao);
 
         return new DoacaoResponse(save);
@@ -104,10 +104,13 @@ public class DoacaoService {
                         + "(ID: "+ request.getAgendamentoId()+ ")")
         );
 
+        if (agendamento.getStatus() != Status.CONFIRMADO) {
+            throw new IllegalStateException("A doação só pode ser registrada para um agendamento confirmado.");
+        }
+
         doacao.setNutriz(nutriz);
         doacao.setBancoLeite(banco);
         doacao.setAgendamento(agendamento);
-
     }
 
 }

@@ -1,6 +1,7 @@
 package br.com.eurofarma.lactare_api.dto.response;
 
 import br.com.eurofarma.lactare_api.entities.Agendamento;
+import br.com.eurofarma.lactare_api.entities.Status;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,7 @@ public class AgendamentoResponse {
     private LocalTime horario;
     private Long nutrizId;
     private Long bancoLeiteId;
+    private Status status;
 
     public AgendamentoResponse(Agendamento agendamento) {
         this.id = agendamento.getId();
@@ -25,5 +27,6 @@ public class AgendamentoResponse {
         this.horario = agendamento.getHorario();
         this.nutrizId = agendamento.getNutriz().getId();
         this.bancoLeiteId = agendamento.getBancoLeite().getId();
+        this.status = agendamento.getStatus();
     }
 }

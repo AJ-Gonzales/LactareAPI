@@ -13,7 +13,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/bancos-de-leite")
+@RequestMapping("/api/v1/bancos-de-leite")
 public class BancoLeiteController {
 
     @Autowired

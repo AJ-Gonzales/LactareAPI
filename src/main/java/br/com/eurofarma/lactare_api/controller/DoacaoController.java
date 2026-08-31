@@ -13,7 +13,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/doações")
+@RequestMapping("/api/v1/doações")
 public class DoacaoController {
 
     @Autowired
@@ -51,10 +51,9 @@ public class DoacaoController {
 
     @PutMapping("/{id}")
     public ResponseEntity<DoacaoResponse> updateDoacao(@PathVariable Long id,
-                                                       @Valid @PathVariable DoacaoRequest request){
+                                                       @Valid @RequestBody DoacaoRequest request) {
 
-        DoacaoResponse doacao = doacaoService.updateDoacao(id,request);
-
+        DoacaoResponse doacao = doacaoService.updateDoacao(id, request);
         return ResponseEntity.ok(doacao);
     }
 

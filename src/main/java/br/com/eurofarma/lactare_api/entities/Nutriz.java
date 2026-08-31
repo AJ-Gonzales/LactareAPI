@@ -24,7 +24,7 @@ public class Nutriz {
     @Column(nullable = false)
     private String telefone;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
     @Column(nullable = false)
     private LocalDate dataNascimento;

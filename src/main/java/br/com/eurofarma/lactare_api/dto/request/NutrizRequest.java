@@ -17,10 +17,11 @@ public class NutrizRequest {
     private String nome;
 
     @NotBlank(message = "CPF é obrigatório")
+    @Size(min = 11, max = 11, message = "CPF deve possuir 11 caracteres")
     private String cpf;
 
     @NotBlank(message = "Telefone é obrigatório")
-    @Size(min = 10,max = 11, message = "O campo telefone deve conter 10 ou 11 carateres")
+    @Size(min = 10,max = 11, message = "Telefone deve conter 10 ou 11 carateres")
     private String telefone;
 
     @NotBlank(message = "E-mail é obrigatório")
@@ -31,11 +32,11 @@ public class NutrizRequest {
     private String endereco;
 
     @NotBlank(message = "CEP é obrigatório")
+    @Size(min = 8,max = 8, message = "CEP deve possuir 8 carateres")
     private String cep;
 
     @NotNull(message = "Data de nascimento é obrigatória")
     @Past(message = "A data de nascimento deve estar no passado")
     private LocalDate dataNascimento;
-
 
 }

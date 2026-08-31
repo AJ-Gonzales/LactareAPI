@@ -1,6 +1,5 @@
 package br.com.eurofarma.lactare_api.dto.request;
 
-import br.com.eurofarma.lactare_api.entities.Status;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -22,9 +21,6 @@ public class AgendamentoRequest {
 
     @NotNull(message = "Horário é obrigatório")
     private LocalTime horario;
-
-    @NotNull(message = "Status é obrigatório")
-    private Status status;
 
     @NotNull(message = "ID da nutriz é obrigatório")
     @Positive(message = "ID da nutriz deve ser positivo")

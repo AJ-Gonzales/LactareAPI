@@ -13,7 +13,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/pesquisas")
+@RequestMapping("/api/v1/pesquisas")
 public class PesquisaSatisfacaoController {
 
     @Autowired

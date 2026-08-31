@@ -49,8 +49,9 @@ public class PesquisaSatisfacaoService {
     @Transactional
     public PesquisaSatisfacaoResponse savePesquisa(PesquisaSatisfacaoRequest request) {
 
-        if (request.getNota() < 3 && (request.getComentario() == null || request.getComentario().isBlank())) {
-            throw new IllegalArgumentException("O comentário é obrigatório para notas abaixo de 3.");}
+        if (request.getNota() <= 3 && (request.getComentario() == null || request.getComentario().isBlank())) {
+            throw new IllegalArgumentException("O comentário é obrigatório para notas iguais ou menores que 3");
+        }
 
         PesquisaSatisfacao pesquisa = new PesquisaSatisfacao();
         copyDtoToPesquisa(request, pesquisa);
@@ -59,14 +60,17 @@ public class PesquisaSatisfacaoService {
     }
 
     @Transactional
-    public PesquisaSatisfacaoResponse updatePesquisa(Long id, PesquisaSatisfacaoRequest request){
+    public PesquisaSatisfacaoResponse updatePesquisa( Long id, PesquisaSatisfacaoRequest request) {
+
+        if (request.getNota() <= 3 && (request.getComentario() == null || request.getComentario().isBlank())) {
+            throw new IllegalArgumentException("O comentário é obrigatório para notas iguais ou menores que 3");
+        }
 
         PesquisaSatisfacao pesquisa = pesquisaSatisfacaoRepository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("Recurso não encontrado. ID: "+id));
+                () -> new ResourceNotFoundException("Recurso não encontrado. ID: " + id));
 
-        copyDtoToPesquisa(request,pesquisa);
+        copyDtoToPesquisa(request, pesquisa);
         PesquisaSatisfacao update = pesquisaSatisfacaoRepository.save(pesquisa);
-
         return new PesquisaSatisfacaoResponse(update);
     }
 
