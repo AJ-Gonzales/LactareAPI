@@ -104,8 +104,8 @@ public class DoacaoService {
                         + "(ID: "+ request.getAgendamentoId()+ ")")
         );
 
-        if (agendamento.getStatus() != Status.CONFIRMADO) {
-            throw new IllegalStateException("A doação só pode ser registrada para um agendamento confirmado.");
+        if (agendamento.getStatus() != Status.CONCLUIDO) {
+            throw new IllegalStateException("A doação só pode ser registrada para um agendamento concluido.");
         }
 
         doacao.setNutriz(nutriz);
