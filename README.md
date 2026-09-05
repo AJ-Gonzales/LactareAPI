@@ -315,7 +315,7 @@ http://localhost:8080/swagger-ui/index.html
 
 O Swagger permite visualizar os endpoints, parâmetros, modelos de dados e realizar requisições diretamente pela interface.
 
-![Swagger](screenshots/swagger.png)
+![Swagger](screenshots/swagger.PNG)
 
 ---
 
@@ -341,27 +341,23 @@ Foram realizados testes envolvendo:
 
 #### Cadastro e consulta de nutriz
 
-![POST Nutriz](screenshots/nutriz-post.png)
+![POST Nutrizes](screenshots/post-nutrizes.PNG)
 
-![GET Nutriz](screenshots/nutriz-get.png)
+![GET Nutriz](screenshots/get-nutrizes.PNG)
 
 #### Atualização e exclusão
 
-![PUT Nutriz](screenshots/nutriz-put.png)
+![PUT Doações](screenshots/put-doacoes.PNG)
 
-![DELETE Nutriz](screenshots/nutriz-delete.png)
+![DELETE Doações](screenshots/delete-doacoes.PNG)
 
 #### Agendamento
 
-![PATCH Agendamento](screenshots/agendamento-patch.png)
-
-#### Doação
-
-![POST Doação](screenshots/doacao-post.png)
+![PATCH Agendamentos](screenshots/patch-agendamentos.PNG)
 
 #### Tratamento de erro
 
-![Erro 404](screenshots/erro-404.png)
+![Erro 409](screenshots/postErro-pesquisas.PNG)
 
 ---
 
@@ -369,11 +365,18 @@ Foram realizados testes envolvendo:
 
 O Lactare possui uma aplicação Flutter voltada ao gerenciamento do sistema, que consome os endpoints disponibilizados por esta API.
 
-**Repositório:**
+# Repositórios
+
+### Gestão Lactare — Flutter
+
 https://github.com/AJ-Gonzales/gestao-lactare-flutter
+
+### Lactare API — Java / Spring Boot
+
+https://github.com/AJ-Gonzales/LactareAPI
 
 ---
 
-# Repositório
+## Projeto acadêmico
 
-https://github.com/AJ-Gonzales/LactareAPI
+Projeto desenvolvido para a Eurofarma como parte das atividades acadêmicas do curso de Sistemas de Informação.
