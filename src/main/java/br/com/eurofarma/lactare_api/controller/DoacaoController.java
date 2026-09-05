@@ -49,4 +49,19 @@ public class DoacaoController {
         return ResponseEntity.created(uri).body(doacao);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<DoacaoResponse> updateDoacao(@PathVariable Long id,
+                                                       @Valid @RequestBody DoacaoRequest request) {
+
+        DoacaoResponse doacao = doacaoService.updateDoacao(id, request);
+        return ResponseEntity.ok(doacao);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteDoacao(@PathVariable Long id){
+
+        doacaoService.deleteDoacao(id);
+
+        return ResponseEntity.noContent().build();
+    }
 }
