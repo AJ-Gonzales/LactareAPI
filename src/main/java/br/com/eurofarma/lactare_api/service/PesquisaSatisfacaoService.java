@@ -59,31 +59,6 @@ public class PesquisaSatisfacaoService {
         return new PesquisaSatisfacaoResponse(pesquisa);
     }
 
-    @Transactional
-    public PesquisaSatisfacaoResponse updatePesquisa( Long id, PesquisaSatisfacaoRequest request) {
-
-        if (request.getNota() <= 3 && (request.getComentario() == null || request.getComentario().isBlank())) {
-            throw new IllegalArgumentException("O comentário é obrigatório para notas iguais ou menores que 3");
-        }
-
-        PesquisaSatisfacao pesquisa = pesquisaSatisfacaoRepository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("Recurso não encontrado. ID: " + id));
-
-        copyDtoToPesquisa(request, pesquisa);
-        PesquisaSatisfacao update = pesquisaSatisfacaoRepository.save(pesquisa);
-        return new PesquisaSatisfacaoResponse(update);
-    }
-
-    @Transactional
-    public void deletePesquisa(Long id){
-
-        if (!pesquisaSatisfacaoRepository.existsById(id)){
-            throw new ResourceNotFoundException("Recurso não encontrado. ID: "+id);
-        }
-
-        pesquisaSatisfacaoRepository.deleteById(id);
-    }
-
     private void copyDtoToPesquisa(PesquisaSatisfacaoRequest request,PesquisaSatisfacao pesquisa){
 
         pesquisa.setNota(request.getNota());

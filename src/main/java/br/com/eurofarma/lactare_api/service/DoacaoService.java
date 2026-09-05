@@ -61,29 +61,6 @@ public class DoacaoService {
         return new DoacaoResponse(save);
     }
 
-    @Transactional
-    public DoacaoResponse updateDoacao(Long id, DoacaoRequest request){
-
-        Doacao doacao = doacaoRepository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("Recurso não encontrado. ID: "+id)
-        );
-
-        copyDtoToDoacao(request,doacao);
-        Doacao update = doacaoRepository.save(doacao);
-
-        return new DoacaoResponse(update);
-    }
-
-    @Transactional
-    public void deleteDoacao(Long id){
-
-        if (!doacaoRepository.existsById(id)){
-            throw new ResourceNotFoundException("Recurso não encontrado. ID: "+id);
-        }
-
-        doacaoRepository.deleteById(id);
-    }
-
     private void copyDtoToDoacao(DoacaoRequest request, Doacao doacao){
 
         doacao.setData(request.getData());

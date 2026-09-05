@@ -49,21 +49,4 @@ public class PesquisaSatisfacaoController {
 
         return ResponseEntity.created(uri).body(pesquisa);
     }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<PesquisaSatisfacaoResponse> updatePesquisa(@PathVariable Long id,
-                                                                     @Valid @RequestBody PesquisaSatisfacaoRequest request){
-
-        PesquisaSatisfacaoResponse pesquisa = pesquisaSatisfacaoService.updatePesquisa(id,request);
-
-        return ResponseEntity.ok(pesquisa);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePesquisa(@PathVariable Long id){
-
-        pesquisaSatisfacaoService.deletePesquisa(id);
-
-        return ResponseEntity.noContent().build();
-    }
 }
