@@ -28,7 +28,7 @@ public class DoacaoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<DoacaoResponse> getDoacaoById(@PathVariable Long id){
+    public ResponseEntity<DoacaoResponse> getDoacaoById(@PathVariable(name = "id", required = true) Long id){
 
         DoacaoResponse doacao = doacaoService.findDoacaoById(id);
 
@@ -50,7 +50,7 @@ public class DoacaoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<DoacaoResponse> updateDoacao(@PathVariable Long id,
+    public ResponseEntity<DoacaoResponse> updateDoacao(@PathVariable(name = "id", required = true) Long id,
                                                        @Valid @RequestBody DoacaoRequest request) {
 
         DoacaoResponse doacao = doacaoService.updateDoacao(id, request);
@@ -58,10 +58,9 @@ public class DoacaoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteDoacao(@PathVariable Long id){
+    public ResponseEntity<Void> deleteDoacao(@PathVariable(name = "id", required = true) Long id){
 
         doacaoService.deleteDoacao(id);
-
         return ResponseEntity.noContent().build();
     }
 }

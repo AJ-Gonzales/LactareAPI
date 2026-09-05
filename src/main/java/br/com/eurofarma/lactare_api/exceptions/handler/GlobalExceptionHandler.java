@@ -90,4 +90,21 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity.status(status).body(err);
     }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<CustomErrorDTO> handleTypeMismatch(
+            MethodArgumentTypeMismatchException e,
+            HttpServletRequest request) {
+
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+
+        CustomErrorDTO err = new CustomErrorDTO(
+                Instant.now(),
+                status.value(),
+                "Parâmetro inválido. O ID deve ser um número.",
+                request.getRequestURI()
+        );
+
+        return ResponseEntity.status(status).body(err);
+    }
 }

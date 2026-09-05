@@ -42,7 +42,7 @@ public class DoacaoService {
     public DoacaoResponse findDoacaoById(Long id){
 
         Doacao doacao = doacaoRepository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("Recurso não encontrado. ID: ")
+                () -> new ResourceNotFoundException("Recurso não encontrado. ID: "+ id)
         );
 
         return new DoacaoResponse(doacao);
@@ -53,11 +53,7 @@ public class DoacaoService {
 
         Doacao doacao = new Doacao();
         copyDtoToDoacao(request, doacao);
-        Agendamento agendamento = doacao.getAgendamento();
-        agendamento.setStatus(Status.CONCLUIDO);
-        agendamentoRepository.save(agendamento);
         Doacao save = doacaoRepository.save(doacao);
-
         return new DoacaoResponse(save);
     }
 
