@@ -9,7 +9,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,7 +22,7 @@ public class AgendamentoRequest {
 
     @NotNull(message = "Horário é obrigatório")
     @Schema(example = "14:30:00")
-    private LocalTime horario;
+    private String horario;
 
     @NotNull(message = "ID da nutriz é obrigatório")
     @Positive(message = "ID da nutriz deve ser positivo")

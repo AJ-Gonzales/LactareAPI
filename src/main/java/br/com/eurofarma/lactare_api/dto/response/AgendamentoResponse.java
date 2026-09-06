@@ -16,7 +16,7 @@ public class AgendamentoResponse {
 
     private Long id;
     private LocalDate data;
-    private LocalTime horario;
+    private String horario;
     private Long nutrizId;
     private Long bancoLeiteId;
     private Status status;

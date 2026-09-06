@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,7 +20,7 @@ public class Agendamento {
     @Column(nullable = false)
     private LocalDate data;
     @Column(nullable = false)
-    private LocalTime horario;
+    private String horario;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
