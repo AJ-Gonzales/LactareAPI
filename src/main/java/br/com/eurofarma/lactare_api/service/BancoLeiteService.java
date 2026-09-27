@@ -3,6 +3,7 @@ package br.com.eurofarma.lactare_api.service;
 import br.com.eurofarma.lactare_api.dto.request.BancoLeiteRequest;
 import br.com.eurofarma.lactare_api.dto.response.BancoLeiteResponse;
 import br.com.eurofarma.lactare_api.entities.BancoLeite;
+import br.com.eurofarma.lactare_api.exceptions.DatabaseException;
 import br.com.eurofarma.lactare_api.exceptions.ResourceNotFoundException;
 import br.com.eurofarma.lactare_api.repository.BancoLeiteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,18 @@ public class BancoLeiteService {
 
     @Transactional
     public BancoLeiteResponse saveBanco(BancoLeiteRequest request){
+
+        boolean existe = bancoLeiteRepository.findAll().stream()
+                .anyMatch(b ->
+                        b.getNome().equalsIgnoreCase(request.getNome())
+                                && b.getEndereco().equalsIgnoreCase(request.getEndereco())
+                );
+
+        if (existe) {
+            throw new DatabaseException(
+                    "Já existe um banco de leite cadastrado com este nome e endereço."
+            );
+        }
 
         BancoLeite banco = new BancoLeite();
         copyDtoToBanco(request,banco);

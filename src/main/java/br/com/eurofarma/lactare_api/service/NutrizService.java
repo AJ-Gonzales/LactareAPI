@@ -3,6 +3,7 @@ package br.com.eurofarma.lactare_api.service;
 import br.com.eurofarma.lactare_api.dto.request.NutrizRequest;
 import br.com.eurofarma.lactare_api.dto.response.NutrizResponse;
 import br.com.eurofarma.lactare_api.entities.Nutriz;
+import br.com.eurofarma.lactare_api.exceptions.DatabaseException;
 import br.com.eurofarma.lactare_api.exceptions.ResourceNotFoundException;
 import br.com.eurofarma.lactare_api.repository.NutrizRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,24 @@ public class NutrizService {
 
     @Transactional
     public NutrizResponse saveNutriz(NutrizRequest request){
+
+        boolean cpfExiste = nutrizRepository.findAll().stream()
+                .anyMatch(n -> n.getCpf().equals(request.getCpf()));
+
+        if (cpfExiste) {
+            throw new DatabaseException(
+                    "Já existe uma nutriz cadastrada com este CPF."
+            );
+        }
+
+        boolean emailExiste = nutrizRepository.findAll().stream()
+                .anyMatch(n -> n.getEmail().equalsIgnoreCase(request.getEmail()));
+
+        if (emailExiste) {
+            throw new DatabaseException(
+                    "Já existe uma nutriz cadastrada com este e-mail."
+            );
+        }
 
         Nutriz nutriz = new Nutriz();
         copyDtoToNutriz(request,nutriz);
