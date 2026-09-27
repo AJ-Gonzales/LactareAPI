@@ -17,6 +17,7 @@ public class PesquisaSatisfacaoResponse {
     private String comentario;
     private LocalDate dataResposta;
     private Long nutrizId;
+    private String nutrizNome;
     private Long doacaoId;
 
     public PesquisaSatisfacaoResponse(PesquisaSatisfacao pesquisaSatisfacao) {
@@ -25,6 +26,7 @@ public class PesquisaSatisfacaoResponse {
         this.comentario = pesquisaSatisfacao.getComentario();
         this.dataResposta = pesquisaSatisfacao.getDataResposta();
         this.nutrizId = pesquisaSatisfacao.getNutriz().getId();
+        this.nutrizNome = pesquisaSatisfacao.getNutriz().getNome();
         this.doacaoId = pesquisaSatisfacao.getDoacao().getId();
     }
 }

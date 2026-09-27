@@ -18,7 +18,9 @@ public class AgendamentoResponse {
     private LocalDate data;
     private String horario;
     private Long nutrizId;
+    private String nutrizNome;
     private Long bancoLeiteId;
+    private String bancoLeiteNome;
     private Status status;
 
     public AgendamentoResponse(Agendamento agendamento) {
@@ -26,7 +28,9 @@ public class AgendamentoResponse {
         this.data = agendamento.getData();
         this.horario = agendamento.getHorario();
         this.nutrizId = agendamento.getNutriz().getId();
+        this.nutrizNome = agendamento.getNutriz().getNome();
         this.bancoLeiteId = agendamento.getBancoLeite().getId();
+        this.bancoLeiteNome = agendamento.getBancoLeite().getNome();
         this.status = agendamento.getStatus();
     }
 }

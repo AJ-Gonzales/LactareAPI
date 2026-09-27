@@ -17,9 +17,6 @@ public class NutrizResponse {
     private String cpf;
     private String telefone;
     private String email;
-    private LocalDate dataNascimento;
-    private String endereco;
-    private String cep;
 
     public NutrizResponse(Nutriz nutriz) {
         this.id = nutriz.getId();
@@ -27,8 +24,5 @@ public class NutrizResponse {
         this.cpf = nutriz.getCpf();
         this.telefone = nutriz.getTelefone();
         this.email = nutriz.getEmail();
-        this.dataNascimento = nutriz.getDataNascimento();
-        this.endereco = nutriz.getEndereco();
-        this.cep = nutriz.getCep();
     }
 }

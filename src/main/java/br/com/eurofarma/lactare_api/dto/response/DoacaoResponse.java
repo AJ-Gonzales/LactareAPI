@@ -17,7 +17,9 @@ public class DoacaoResponse {
     private LocalDate data;
     private BigDecimal quantidade;
     private Long nutrizId;
+    private String nutrizNome;
     private Long bancoLeiteId;
+    private String bancoLeiteNome;
     private Long agendamentoId;
 
     public DoacaoResponse(Doacao doacao) {
@@ -25,7 +27,9 @@ public class DoacaoResponse {
         this.data = doacao.getData();
         this.quantidade = doacao.getQuantidade();
         this.nutrizId = doacao.getNutriz().getId();
+        this.nutrizNome = doacao.getNutriz().getNome();
         this.bancoLeiteId = doacao.getBancoLeite().getId();
+        this.bancoLeiteNome = doacao.getBancoLeite().getNome();
         this.agendamentoId = doacao.getAgendamento().getId();
     }
 }
